@@ -8,7 +8,7 @@ int main() {
 	std::vector<double>values = { 3 }; //we are looking for the double value 3 as it is the default minecraft reach value
   	double newreach = 4; //this is the new reach value
   
-	std::vector<DWORD>locations = kletz::memory::ScanProcessMemory(processhandle, values, 2, 0x02000000, 0x06FFFFFF); // vector locations will store all instances of the double value 3
+	std::vector<DWORD>locations = kletz::memory::ScanMemory(processhandle, values, 2, 0x02000000, 0x06FFFFFF); // vector locations will store all instances of the double value 3
 	for (const auto i : locations) { //going trough all the found addresses 
 		WriteProcessMemory(processhandle,(LPVOID)(i), &newreach, sizeof(double), 0);//writing the new reach value on every found address
 	} 
